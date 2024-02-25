@@ -22,14 +22,14 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
 }
 
 #get vpc data
-data "aws_vpc" "default" {
-  default = true
+data "aws_vpc" "vpc" {
+  vpc = vpc-07960ded534487cc1
 }
 #get public subnets for cluster
 data "aws_subnets" "public" {
   filter {
     name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
+    values = [data.aws_vpc.vpc.id]
   }
 }
 #cluster provision
